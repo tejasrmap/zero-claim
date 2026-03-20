@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>ZeroClaim AI</title>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #fff;
+  }
+
+  h1 {
+    margin-top: 20px;
+    font-weight: 600;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .card {
+    backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.05);
+    border-radius: 16px;
+    padding: 20px;
+    width: 280px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    transition: 0.3s;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 5px;
+  }
+
+  .primary { background: #3b82f6; color: white; }
+  .success { background: #22c55e; color: white; }
+  .danger { background: #ef4444; color: white; }
+
+  .highlight { color: #facc15; }
+  .green { color: #22c55e; }
+
+  #app { display: none; }
+</style>
+</head>
+
+<body>
+
+<h1 align="center">🚀 ZeroClaim AI</h1>
+<p align="center">No Claims. No Forms. Instant Protection</p>
+
+<!-- ONBOARDING -->
+<div id="onboarding" class="container">
+  <div class="card">
+    <h3>🚚 Get Started</h3>
+    <p>Select Platform</p>
+    <button class="primary" onclick="startApp()">Zomato</button>
+    <button class="primary" onclick="startApp()">Swiggy</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+
+<div class="container">
+
+  <!-- USER -->
+  <div class="card">
+    <h3>👤 Rahul</h3>
+    <p>Weekly: ₹5000</p>
+    <p>Orders: <span id="orders">20</span></p>
+    <p>Risk: <span id="risk">Low</span></p>
+    <p>AI Score: <span id="score">20</span>/100</p>
+    <p>Plan: <span id="plan">None</span></p>
+  </div>
+
+  <!-- PLAN -->
+  <div class="card">
+    <h3>💰 Weekly Plans</h3>
+    <button class="success" onclick="selectPlan(20)">₹20</button>
+    <button class="success" onclick="selectPlan(35)">₹35</button>
+    <button class="success" onclick="selectPlan(50)">₹50</button>
+  </div>
+
+  <!-- AI ENGINE -->
+  <div class="card">
+    <h3>🤖 AI Engine</h3>
+    <p>Rain: <span id="rain">20</span> mm</p>
+    <p>Drop: <span id="drop">0%</span></p>
+    <p>Decision: <span id="decision">Normal</span></p>
+  </div>
+
+  <!-- SIMULATION -->
+  <div class="card">
+    <h3>⚡ Simulation</h3>
+    <button class="primary" onclick="simulate()">Simulate Rain</button>
+
+    <p>Expected: ₹500</p>
+    <p>Actual: ₹<span id="actual">500</span></p>
+
+    <p id="status"></p>
+    <p id="payout"></p>
+  </div>
+
+</div>
+
+<div class="container">
+  <div class="card">
+    <h3>📊 Admin Dashboard</h3>
+    <p>Claims: 120</p>
+    <p>Fraud Alerts: 3</p>
+    <p>High Risk Zone: Vijayawada</p>
+  </div>
+</div>
+
+</div>
+
+<script>
+let plan = null;
+
+function startApp(){
+  document.getElementById("onboarding").style.display="none";
+  document.getElementById("app").style.display="block";
+}
+
+function selectPlan(p){
+  plan = p;
+  document.getElementById("plan").innerText = "₹"+p+"/week";
+}
+
+function simulate(){
+  if(!plan){
+    alert("Select plan first");
+    return;
+  }
+
+  document.getElementById("orders").innerText = 5;
+  document.getElementById("risk").innerText = "High";
+  document.getElementById("score").innerText = 85;
+
+  document.getElementById("rain").innerText = 80;
+  document.getElementById("drop").innerText = "75%";
+  document.getElementById("decision").innerText = "Trigger Claim";
+
+  document.getElementById("actual").innerText = 150;
+
+  document.getElementById("status").innerHTML =
+    "⚡ <span class='highlight'>Auto Claim Triggered</span>";
+
+  document.getElementById("payout").innerHTML =
+    "💸 <span class='green'>₹300 Credited</span>";
+}
+</script>
+
+</body>
+</html>
