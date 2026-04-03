@@ -1,9 +1,10 @@
 import React from 'react';
+import RazorpayButton from './RazorpayButton';
 
 export default function PlanSelector({ selectedPlan, onSelect }) {
   const plans = [
-    { id: 'standard', name: 'Standard', price: 29, coverage: 5000, desc: 'Basic Rain & Heat Protection' },
-    { id: 'pro', name: 'Elite Plus', price: 49, coverage: 12000, desc: 'Full Disruption & Accident Support' },
+    { id: 'standard', name: 'Standard', price: 29, coverage: 5000, desc: 'Basic Rain & Heat Protection', buttonId: 'pl_SZ85n1VUKPNfjP' },
+    { id: 'pro', name: 'Elite Plus', price: 49, coverage: 12000, desc: 'Full Disruption & Accident Support', buttonId: 'pl_SZ87DmkDu9qPn5' },
   ];
 
   return (
@@ -38,14 +39,20 @@ export default function PlanSelector({ selectedPlan, onSelect }) {
               </div>
             </div>
             
-            <div className="mt-4 pt-4 border-t border-white/5 flex justify-between items-center">
-               <div className="flex gap-1.5">
-                  <div className="w-1 h-1 rounded-full bg-blue-500"></div>
-                  <div className="w-1 h-1 rounded-full bg-blue-500/30"></div>
-                  <div className="w-1 h-1 rounded-full bg-blue-500/30"></div>
-               </div>
-               <p className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">₹{p.coverage} Coverage</p>
-            </div>
+            {selectedPlan?.id === p.id && p.buttonId ? (
+              <div className="mt-6 flex justify-center animate-premium-fade">
+                <RazorpayButton buttonId={p.buttonId} />
+              </div>
+            ) : (
+                <div className="mt-4 pt-4 border-t border-white/5 flex justify-between items-center">
+                  <div className="flex gap-1.5">
+                    <div className="w-1 h-1 rounded-full bg-blue-500"></div>
+                    <div className="w-1 h-1 rounded-full bg-blue-500/30"></div>
+                    <div className="w-1 h-1 rounded-full bg-blue-500/30"></div>
+                  </div>
+                  <p className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">₹{p.coverage} Coverage</p>
+                </div>
+            )}
           </button>
         ))}
       </div>

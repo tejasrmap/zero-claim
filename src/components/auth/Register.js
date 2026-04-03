@@ -145,11 +145,11 @@ export default function Register({ onRegister, onLogin }) {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Partner ID</label>
+                  <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Partner / Zomato ID</label>
                   <input
                     type="text"
                     required
-                    placeholder="WZ-2024"
+                    placeholder="e.g. WZ-2024"
                     className="auth-input"
                     value={formData.workerId}
                     onChange={(e) => setFormData({ ...formData, workerId: e.target.value })}
