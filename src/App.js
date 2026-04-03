@@ -226,9 +226,9 @@ function App() {
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center text-[10px] font-black text-slate-600 uppercase tracking-[0.3em]">
            <p>© 2026 ZeroClaim AI. Advanced Protection Engine.</p>
            <div className="flex gap-10">
-              <a href="#" className="hover:text-white transition-colors">Safety SLA</a>
-              <a href="#" className="hover:text-white transition-colors">Privacy</a>
-              <a href="#" className="hover:text-white transition-colors">Systems</a>
+               <a href="/" className="hover:text-white transition-colors">Safety SLA</a>
+               <a href="/" className="hover:text-white transition-colors">Privacy</a>
+               <a href="/" className="hover:text-white transition-colors">Systems</a>
            </div>
         </div>
       </footer>

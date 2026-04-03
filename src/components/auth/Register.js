@@ -51,7 +51,7 @@ export default function Register({ onRegister, onLogin }) {
     }
   };
 
-  const selectedPlatform = platforms.find(p => p.id === formData.platform);
+
 
   return (
     <div className="min-h-screen bg-[#030712] flex flex-col lg:flex-row font-outfit overflow-hidden">

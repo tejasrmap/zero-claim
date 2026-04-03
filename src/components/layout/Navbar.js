@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 export default function Navbar({ user, onLogout }) {
-  const [battery, setBattery] = useState(84);
+  const [battery] = useState(84);
   const [time, setTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
 
   useEffect(() => {
