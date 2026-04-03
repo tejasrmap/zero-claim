@@ -1,13 +1,54 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#030712] text-slate-100 selection:bg-blue-500/30 font-outfit antialiased;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer components {
+  /* High-Contrast Professional Cards */
+  .pro-card {
+    @apply bg-[#0f172a] border border-white/5 rounded-2xl shadow-xl transition-all duration-300;
+  }
+
+  .pro-card-hover {
+    @apply hover:border-blue-500/30 hover:bg-[#1e293b] hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/10;
+  }
+
+  /* Sharp Glassmorphism (Mobile Optimized) */
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/[0.03] border border-white/10 rounded-2xl shadow-2xl;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-xl font-bold transition-all duration-200 
+           bg-blue-600 hover:bg-blue-500 text-white
+           active:scale-95 shadow-lg shadow-blue-600/20 active:shadow-none;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-xl font-bold transition-all duration-200
+           bg-white/5 border border-white/10 text-white hover:bg-white/10 active:scale-95;
+  }
+
+  /* Status Badges */
+  .badge-emerald { @apply px-2 py-0.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-black rounded uppercase tracking-widest; }
+  .badge-blue { @apply px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-black rounded uppercase tracking-widest; }
+  .badge-amber { @apply px-2 py-0.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[10px] font-black rounded uppercase tracking-widest; }
+  .badge-rose { @apply px-2 py-0.5 bg-rose-500/10 border border-rose-500/20 text-rose-400 text-[10px] font-black rounded uppercase tracking-widest; }
+}
+
+/* Custom Scrollbar for Desktop */
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-white/10 rounded-full hover:bg-white/20; }
+}
+
+/* Hide scrollbar for mobile */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar { display: none; }
 }
