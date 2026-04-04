@@ -157,7 +157,7 @@ function App() {
             <PlanSelector selectedPlan={plan} onSelect={setPlan} />
           )}
           {activeTab === 'simulate' && (
-            <SimulationHub onSimulate={handleSimulate} isSimulating={isSimulating} hasTriggered={hasTriggered} />
+            <SimulationHub onSimulate={handleSimulate} isSimulating={isSimulating} hasTriggered={hasTriggered} selectedPlan={plan} />
           )}
           {activeTab === 'history' && (
             <Timeline events={logs} fullHeight />
@@ -181,7 +181,7 @@ function App() {
                <PolicyDetails user={user} selectedPlan={plan} />
             </div>
             
-            <SimulationHub onSimulate={handleSimulate} isSimulating={isSimulating} hasTriggered={hasTriggered} />
+            <SimulationHub onSimulate={handleSimulate} isSimulating={isSimulating} hasTriggered={hasTriggered} selectedPlan={plan} />
           </div>
 
           {/* Right Column: Identity & Timeline (4 cols) */}

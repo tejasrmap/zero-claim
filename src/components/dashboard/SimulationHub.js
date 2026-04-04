@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function SimulationHub({ onSimulate, isSimulating, hasTriggered }) {
+export default function SimulationHub({ onSimulate, isSimulating, hasTriggered, selectedPlan }) {
   const triggers = [
     { id: 'rain', name: 'Heavy Rain', intensity: 45, icon: '🌧️', desc: '> 40mm detected' },
     { id: 'flood', name: 'Water Logging', intensity: 65, icon: '🌊', desc: 'Zone Overflow' },
@@ -10,7 +10,19 @@ export default function SimulationHub({ onSimulate, isSimulating, hasTriggered }
   ];
 
   return (
-    <div className="pro-card p-6 bg-gradient-to-br from-[#0f172a] to-slate-900 border-white/5 relative overflow-hidden">
+    <div className={`pro-card p-6 bg-gradient-to-br from-[#0f172a] to-slate-900 border-white/5 relative overflow-hidden transition-all duration-700 ${!selectedPlan ? 'grayscale-[0.8] opacity-50' : ''}`}>
+      
+      {!selectedPlan && (
+        <div className="absolute inset-0 z-[50] flex flex-col items-center justify-center bg-[#030712]/40 backdrop-blur-[2px]">
+           <div className="flex flex-col items-center gap-3 animate-premium-fade text-center p-6 bg-[#0f172a]/80 rounded-2xl border border-white/10 shadow-2xl">
+              <svg className="w-10 h-10 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+              <div>
+                <p className="text-xs font-black text-white uppercase tracking-widest">Simulation Locked</p>
+                <p className="text-[9px] font-bold text-slate-400 mt-1 uppercase tracking-tighter">Active Protection Policy Required</p>
+              </div>
+           </div>
+        </div>
+      )}
       
       <div className="flex justify-between items-center mb-8 relative z-10">
         <div className="space-y-1">
@@ -30,10 +42,10 @@ export default function SimulationHub({ onSimulate, isSimulating, hasTriggered }
         {triggers.map((t) => (
           <button
             key={t.id}
-            disabled={isSimulating}
+            disabled={isSimulating || !selectedPlan}
             onClick={() => onSimulate(t.intensity, t.name)}
             className={`flex flex-col items-center justify-center p-6 rounded-2xl border-2 transition-all duration-300 group ${
-              isSimulating 
+              isSimulating || !selectedPlan
                 ? 'opacity-20 cursor-not-allowed border-transparent' 
                 : 'bg-[#1e293b]/50 border-white/5 hover:border-blue-500/50 hover:bg-blue-500/5 hover:-translate-y-1 active:scale-95 shadow-lg shadow-black/20'
             }`}
