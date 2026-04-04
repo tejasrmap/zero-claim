@@ -4,7 +4,8 @@ export default function RazorpayButton({ buttonId }) {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const container = containerRef.current;
+    if (!container) return;
 
     const script = document.createElement('script');
     script.src = 'https://checkout.razorpay.com/v1/payment-button.js';
@@ -15,11 +16,11 @@ export default function RazorpayButton({ buttonId }) {
     const form = document.createElement('form');
     form.appendChild(script);
 
-    containerRef.current.appendChild(form);
+    container.appendChild(form);
 
     return () => {
-      if (containerRef.current) {
-        containerRef.current.innerHTML = '';
+      if (container) {
+        container.innerHTML = '';
       }
     };
   }, [buttonId]);
